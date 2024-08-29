@@ -8,11 +8,11 @@ todoButton.addEventListener("click", addTodo);
 todoList.addEventListener("click", deleteCheck);
 filterOption.addEventListener("change", filterTodo);
 
-// Add event listener for Enter key press
+
 todoInput.addEventListener("keypress", function(e) {
     if (e.key === "Enter") {
-        e.preventDefault(); // Prevent the default action of Enter key (e.g., form submission)
-        addTodo(); // Call the addTodo function to add a new todo
+        e.preventDefault(); 
+        addTodo(); 
     }
 });
 
@@ -35,7 +35,7 @@ function addTodo() {
     deleteButton.classList.add("delete-btn");
 
     const editButton = document.createElement("button");
-    editButton.innerText = "✏️";  // Pencil emoji for the edit button
+    editButton.innerText = "✏️"; 
     editButton.classList.add("edit-btn");
 
     todoItem.appendChild(todoSpan);
@@ -57,36 +57,36 @@ function deleteCheck(e) {
     } else if (e.target.classList.contains("tick-btn")) {
         const todo = e.target.parentElement;
         todo.children[0].classList.toggle("completed");
-        updateLocalTodos(); // Update local storage after toggling
+        updateLocalTodos(); 
     } else if (e.target.classList.contains("edit-btn")) {
         const todoSpan = e.target.parentElement.querySelector("span");
         const originalText = todoSpan.innerText;
 
-        // Create an input field and set its value to the current todo text
+       
         const inputField = document.createElement("input");
         inputField.type = "text";
         inputField.value = originalText;
         inputField.classList.add("edit-input");
 
-        // Replace the span with the input field
+      
         todoSpan.replaceWith(inputField);
         inputField.focus();
 
-        // Handle input field blur event to save changes
+       
         inputField.addEventListener("blur", () => {
             const newText = inputField.value.trim();
             if (newText !== "") {
                 todoSpan.innerText = newText;
                 todoSpan.classList.remove("edit-input");
                 inputField.replaceWith(todoSpan);
-                updateLocalTodos(); // Update local storage after editing
+                updateLocalTodos(); 
             } else {
-                // If no text, replace input with original span
+              
                 inputField.replaceWith(todoSpan);
             }
         });
 
-        // Handle Enter key to save changes
+    
         inputField.addEventListener("keypress", (e) => {
             if (e.key === "Enter") {
                 inputField.blur();
@@ -159,7 +159,7 @@ function getLocalTodos() {
         deleteButton.classList.add("delete-btn");
 
         const editButton = document.createElement("button");
-        editButton.innerText = "✏️";  // Pencil emoji for the edit button
+        editButton.innerText = "✏️";  
         editButton.classList.add("edit-btn");
 
         todoItem.appendChild(todoSpan);
